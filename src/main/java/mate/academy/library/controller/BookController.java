@@ -1,6 +1,7 @@
 package mate.academy.library.controller;
 
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.library.dto.BookDto;
@@ -25,8 +26,8 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public List<BookDto> getAll() {
-        return bookService.findAll();
+    public List<BookDto> getAll(Pageable pageable) {
+        return bookService.findAll(pageable);
     }
 
     @GetMapping("/{id}")
@@ -53,7 +54,7 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
-        return bookService.searchBooks(searchParameters);
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters, Pageable pageable) {
+        return bookService.searchBooks(searchParameters, pageable);
     }
 }

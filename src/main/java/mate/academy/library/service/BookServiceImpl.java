@@ -1,5 +1,6 @@
 package mate.academy.library.service;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.library.dao.BookRepository;
@@ -30,8 +31,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> findAll() {
-        return bookRepository.findAll()
+    public List<BookDto> findAll(Pageable pageable) {
+        return bookRepository.findAll(pageable)
                 .stream()
                 .map(bookMapper::toDto)
                 .toList();
@@ -60,9 +61,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters, Pageable pageable) {
         Specification<Book> spec = specificationBuilder.build(searchParameters);
-        return bookRepository.findAll(spec)
+        return bookRepository.findAll(spec, pageable)
                 .stream()
                 .map(bookMapper::toDto)
                 .toList();
