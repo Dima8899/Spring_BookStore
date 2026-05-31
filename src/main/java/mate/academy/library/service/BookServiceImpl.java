@@ -1,6 +1,5 @@
 package mate.academy.library.service;
 
-import org.springframework.data.domain.Pageable;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.library.dao.BookRepository;
@@ -11,6 +10,7 @@ import mate.academy.library.exception.EntityNotFoundException;
 import mate.academy.library.mapper.BookMapper;
 import mate.academy.library.model.Book;
 import mate.academy.library.specification.BookSpecificationBuilder;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
