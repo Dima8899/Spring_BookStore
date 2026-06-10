@@ -23,7 +23,7 @@ public class CustomGlobalExceptionHandler {
                     if (error instanceof FieldError fieldError) {
                         return fieldError.getField() + ": " + fieldError.getDefaultMessage();
                     }
-                    return error.getDefaultMessage(); // ← для ошибок на классе (@FieldMatch)
+                    return error.getDefaultMessage();
                 })
                 .toList();
 
@@ -40,7 +40,6 @@ public class CustomGlobalExceptionHandler {
 
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.CONFLICT.value()); // 409 — email занят
         body.put("error", ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body(body);

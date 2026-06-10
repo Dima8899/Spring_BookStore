@@ -21,18 +21,15 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto register(UserRegistrationRequestDto request)
             throws RegistrationException {
 
-        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+        if (userRepository.existsByEmail(request.getEmail())) {
             throw new RegistrationException(
                     "Email already registered: " + request.getEmail()
             );
         }
 
         User user = userMapper.toModel(request);
-
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-
         User savedUser = userRepository.save(user);
-
         return userMapper.toDto(savedUser);
     }
 }
