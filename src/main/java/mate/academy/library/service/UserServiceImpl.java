@@ -1,0 +1,38 @@
+package mate.academy.library.service;
+
+import lombok.RequiredArgsConstructor;
+import mate.academy.library.dao.UserRepository;
+import mate.academy.library.dto.UserRegistrationRequestDto;
+import mate.academy.library.dto.UserResponseDto;
+import mate.academy.library.exception.RegistrationException;
+import mate.academy.library.mapper.UserMapper;
+import mate.academy.library.model.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserService {
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public UserResponseDto register(UserRegistrationRequestDto request)
+            throws RegistrationException {
+
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new RegistrationException(
+                    "Email already registered: " + request.getEmail()
+            );
+        }
+
+        User user = userMapper.toModel(request);
+
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        User savedUser = userRepository.save(user);
+
+        return userMapper.toDto(savedUser);
+    }
+}
