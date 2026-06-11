@@ -1,6 +1,5 @@
 package mate.academy.library.service;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.library.dao.BookRepository;
 import mate.academy.library.dto.BookDto;
@@ -10,6 +9,8 @@ import mate.academy.library.exception.EntityNotFoundException;
 import mate.academy.library.mapper.BookMapper;
 import mate.academy.library.model.Book;
 import mate.academy.library.specification.BookSpecificationBuilder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -30,11 +31,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> findAll() {
-        return bookRepository.findAll()
-                .stream()
-                .map(bookMapper::toDto)
-                .toList();
+    public Page<BookDto> findAll(Pageable pageable) {
+        return bookRepository.findAll(pageable)
+                .map(bookMapper::toDto);
     }
 
     @Override
@@ -60,11 +59,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+    public Page<BookDto> searchBooks(BookSearchParametersDto searchParameters, Pageable pageable) {
         Specification<Book> spec = specificationBuilder.build(searchParameters);
-        return bookRepository.findAll(spec)
-                .stream()
-                .map(bookMapper::toDto)
-                .toList();
+        return bookRepository.findAll(spec, pageable)
+                .map(bookMapper::toDto);
     }
 }
