@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 008
+      author: DimaB
+      changes:
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'admin@mail.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ADMIN')
+
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'user@mail.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'bob@mail.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'USER')
+
