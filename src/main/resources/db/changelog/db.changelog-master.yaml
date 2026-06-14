@@ -5,9 +5,3 @@ databaseChangeLog:
       file: db/changelog/changes/02-create-users-table.yaml
   - include:
       file: db/changelog/changes/03-add-is-deleted-to-users.yaml
-  - include:
-      file: db/changelog/changes/04-create-roles-table.yaml
-  - include:
-      file: db/changelog/changes/05-create-users-roles-table.yaml
-  - include:
-      file: db/changelog/changes/06-add-roles.yaml
