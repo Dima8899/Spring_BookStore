@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007
+      author: DimaB
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: admin@mail.com
+              - column:
+                  name: password
+                  value: $2a$12$S4KeThRbGSrZFlDjsuFzoevM4nN/9tSmq.tWJ2MSB52R/EgzbBnYK
+              - column:
+                  name: first_name
+                  value: Main
+              - column:
+                  name: last_name
+                  value: Admin
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: user@mail.com
+              - column:
+                  name: password
+                  value: $2a$10$yMmQGGEbHQRsYXNDMBYpKuSXJNOBQGfJMDnLFmZQoZBbHq7mWdYe6
+              - column:
+                  name: first_name
+                  value: Main
+              - column:
+                  name: last_name
+                  value: User
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: Bob@mail.com
+              - column:
+                  name: password
+                  value: $2a$10$yMmQGGEbHQRsYXNDMBYpKuSXJNOBQGfJMDnLFmZQoZBbHq7mWdYe6
+              - column:
+                  name: first_name
+                  value: Bob
+              - column:
+                  name: last_name
+                  value: User1
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
