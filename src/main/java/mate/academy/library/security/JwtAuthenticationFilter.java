@@ -22,7 +22,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final String BEARER = "Bearer ";
     private static final int BEARER_LENGTH = 7;
 
-
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
 
