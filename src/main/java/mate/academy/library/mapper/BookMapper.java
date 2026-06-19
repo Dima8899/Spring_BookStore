@@ -1,7 +1,6 @@
 package mate.academy.library.mapper;
 
 import java.util.stream.Collectors;
-import mate.academy.library.dao.CategoryRepository;
 import mate.academy.library.dto.BookDto;
 import mate.academy.library.dto.BookDtoWithoutCategoryIds;
 import mate.academy.library.dto.CreateBookRequestDto;
