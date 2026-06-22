@@ -32,8 +32,8 @@ public class CategoryController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Create category", description = "Creates a new category and returns " +
-            "created entiry")
+    @Operation(summary = "Create category", description = "Creates a new category and returns "
+            + "created entiry")
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto createCategory(@RequestBody @Valid CreateCategoryDto createCategoryDto) {
         return categoryService.save(createCategoryDto);
@@ -71,8 +71,8 @@ public class CategoryController {
 
     @GetMapping("/{id}/books")
     @PreAuthorize("hasRole('USER')")
-    @Operation(summary = "Get boos by category id", description = "Returns a list of books from " +
-            "certain category")
+    @Operation(summary = "Get boos by category id", description = "Returns a list of books from "
+            + "certain category")
     public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(@PathVariable Long id) {
         return bookService.getBooksByCategoriesId(id);
     }
