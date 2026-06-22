@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: DimaB
+      changes:
+        - addUniqueConstraint:
+            tableName: categories
+            columnNames: name
+            constraintName: uq_categories_name

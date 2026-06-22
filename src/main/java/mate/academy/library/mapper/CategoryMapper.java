@@ -1,6 +1,7 @@
 package mate.academy.library.mapper;
 
 import mate.academy.library.dto.CategoryDto;
+import mate.academy.library.dto.CreateCategoryDto;
 import mate.academy.library.model.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,5 +13,5 @@ public interface CategoryMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "deleted", ignore = true)
-    Category toEntity(CategoryDto categoryDto);
+    Category toEntity(CreateCategoryDto createCategoryDto);
 }
