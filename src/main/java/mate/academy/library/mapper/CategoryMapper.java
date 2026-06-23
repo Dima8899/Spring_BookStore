@@ -5,6 +5,7 @@ import mate.academy.library.dto.CreateCategoryDto;
 import mate.academy.library.model.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
@@ -14,4 +15,8 @@ public interface CategoryMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "deleted", ignore = true)
     Category toEntity(CreateCategoryDto createCategoryDto);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
+    void updateCategoryFromDto(CreateCategoryDto dto, @MappingTarget Category category);
 }
