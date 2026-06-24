@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: 009
+      id: 011
       author: DimaB
       changes:
         - createTable:
-            tableName: categories
+            tableName: shopping_carts
             columns:
               - column:
                   name: id
@@ -12,15 +12,15 @@ databaseChangeLog:
                   autoIncrement: true
                   constraints:
                     primaryKey: true
+                    nullable: false
               - column:
-                  name: name
-                  type: VARCHAR(255)
+                  name: user_id
+                  type: BIGINT
                   constraints:
                     nullable: false
                     unique: true
-              - column:
-                  name: description
-                  type: VARCHAR(255)
+                    foreignKeyName: fk_shopping_carts_user
+                    references: users(id)
               - column:
                   name: is_deleted
                   type: tinyint(1)

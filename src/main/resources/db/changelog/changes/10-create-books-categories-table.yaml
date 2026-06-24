@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 09-create-books-categories-table
+      id: 010
       author: DimaB
       changes:
         - createTable:
@@ -10,11 +10,13 @@ databaseChangeLog:
                   name: book_id
                   type: BIGINT
                   constraints:
+                    primaryKey: true
                     nullable: false
               - column:
                   name: category_id
                   type: BIGINT
                   constraints:
+                    primaryKey: true
                     nullable: false
         - addForeignKeyConstraint:
             baseTableName: books_categories
