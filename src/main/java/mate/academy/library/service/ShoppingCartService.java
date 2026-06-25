@@ -11,10 +11,10 @@ public interface ShoppingCartService {
 
     ShoppingCartResponseDto addBookToCart(Long userId, CartItemRequestDto requestDto);
 
-    ShoppingCartResponseDto updateCartItemQuantity(Long cartItemId,
+    ShoppingCartResponseDto updateCartItemQuantity(Long cartItemId, Long userId,
                                                    UpdateCartItemRequestDto requestDto);
 
-    void removeCartItem(Long cartItemId);
+    void removeCartItem(Long cartItemId, Long userId);
 
     void createShoppingCart(User user);
 }

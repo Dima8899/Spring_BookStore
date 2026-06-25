@@ -53,15 +53,18 @@ public class ShoppingCartController {
     @Operation(summary = "Update quantity of a books in the shopping cart")
     public ShoppingCartResponseDto updateCartItemQuantity(
             @PathVariable Long cartItemId,
-            @RequestBody @Valid UpdateCartItemRequestDto requestDto) {
-        return shoppingCartService.updateCartItemQuantity(cartItemId, requestDto);
+            @RequestBody @Valid UpdateCartItemRequestDto requestDto,
+            Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        return shoppingCartService.updateCartItemQuantity(cartItemId, user.getId(), requestDto);
     }
 
     @DeleteMapping("/items/{cartItemId}")
     @PreAuthorize("hasRole('USER')")
     @Operation(summary = "Remove book from shopping cart")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeCartItem(@PathVariable Long cartItemId) {
-        shoppingCartService.removeCartItem(cartItemId);
+    public void removeCartItem(@PathVariable Long cartItemId, Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        shoppingCartService.removeCartItem(cartItemId, user.getId());
     }
 }
