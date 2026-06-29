@@ -1,7 +1,6 @@
 package mate.academy.library.dao;
 
 import mate.academy.library.model.Order;
-import mate.academy.library.model.OrderItem;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
