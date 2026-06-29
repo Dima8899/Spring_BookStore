@@ -13,6 +13,7 @@ import mate.academy.library.dto.order.OrderItemResponseDto;
 import mate.academy.library.dto.order.OrderResponseDto;
 import mate.academy.library.dto.order.UpdateOrderStatusRequestDto;
 import mate.academy.library.exception.EntityNotFoundException;
+import mate.academy.library.exception.OrderProcessingException;
 import mate.academy.library.mapper.OrderItemMapper;
 import mate.academy.library.mapper.OrderMapper;
 import mate.academy.library.model.CartItem;
@@ -40,6 +41,10 @@ public class OrderServiceImpl implements OrderService {
         ShoppingCart cart = shoppingCartRepository.findByUserId(userId)
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Shopping cart not found for user: " + userId));
+
+        if (cart.getCartItems() == null || cart.getCartItems().isEmpty()) {
+            throw new OrderProcessingException("Cannot create order: shopping cart is empty");
+        }
 
         Order order = new Order();
         order.setUser(cart.getUser());
