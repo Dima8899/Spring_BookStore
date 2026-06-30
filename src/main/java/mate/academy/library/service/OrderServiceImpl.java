@@ -43,7 +43,8 @@ public class OrderServiceImpl implements OrderService {
                         "Shopping cart not found for user: " + userId));
 
         if (cart.getCartItems() == null || cart.getCartItems().isEmpty()) {
-            throw new OrderProcessingException("Cannot create order: shopping cart is empty");
+            throw new OrderProcessingException("Cannot create order. Shopping cart is "
+                    + "empty for user: " + userId);
         }
 
         Order order = new Order();

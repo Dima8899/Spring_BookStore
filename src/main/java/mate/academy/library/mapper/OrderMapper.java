@@ -9,6 +9,5 @@ import org.mapstruct.Mapping;
 public interface OrderMapper {
 
     @Mapping(target = "userId", source = "user.id")
-    @Mapping(target = "status", source = "status")
     OrderResponseDto toDto(Order order);
 }
