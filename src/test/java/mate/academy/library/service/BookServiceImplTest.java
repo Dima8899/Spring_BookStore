@@ -84,7 +84,7 @@ class BookServiceImplTest {
         BookDto result = bookService.createBook(requestDto);
 
         assertThat(result.getTitle()).isEqualTo("Book One");
-        verify(bookRepository, times(1)).save(book);
+        verify(bookRepository).save(book);
     }
 
     @Test
